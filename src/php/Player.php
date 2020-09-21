@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class Player
 {
-  private $card = [];
+  private $cards = [];
   private $lost = false;
 
   public function __construct(array $card)

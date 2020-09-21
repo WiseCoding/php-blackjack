@@ -15,11 +15,9 @@
 <body class="container box-border bg-gray-100">
   <form action="" method="POST">
     <div class="card">
-      <div class="px-6 py-4">
-        <div class="mb-2 text-xl font-bold">Blackjack</div>
-      </div>
-      <img class="w-full" src="src/img/cards/card-2-clubs.svg">
-      <div class="flex justify-center px-6 pt-4 pb-2">
+      <div class="mt-4 text-xl font-bold">PLAYER</div>
+      <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg">
+      <div class="flex justify-center px-6 pt-4 pb-2 mb-6">
 
         <button class="btn" value="draw" name="draw">
           <img class="w-8 h-8 mr-2" src="./src/img/draw.svg">
@@ -34,6 +32,12 @@
           <span>Stop</span>
         </button>
       </div>
+    </div>
+
+
+    <div class="card">
+      <div class="mt-4 text-xl font-bold">DEALER</div>
+      <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg">
     </div>
   </form>
 

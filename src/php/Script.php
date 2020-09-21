@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-
+// FUNCTIONS
 function whatIsHappening()
 {
   echo '<h2>$_GET</h2>';

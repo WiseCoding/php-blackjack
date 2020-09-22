@@ -12,15 +12,18 @@ class Blackjack
     $deck->shuffle();
     $player = new Player($deck, 'player');
     $dealer = new Player($deck, 'dealer');
+
+    $this->player = $player;
+    $this->dealer = $dealer;
   }
 
   public function getPlayer()
   {
-    # code...
+    return $this->player;
   }
 
   public function getDealer()
   {
-    # code...
+    return $this->dealer;
   }
 }

@@ -17,13 +17,13 @@ require 'src/php/Script.php';
 debug();
 //session_unset();
 
-/* foreach ($deck->getCards() as $card) {
-  echo $card->getUnicodeCharacter(true);
-} */
-echo '<br>';
 
+// INSTANTIATION
 $blackjack = new Blackjack();
-$test = $_SESSION['player'][0];
-echo $test->getUnicodeCharacter(true);
 
-require 'src/php/HTML.php'; // HTML LAST
+if (isset($_POST['draw'])) {
+  $blackjack->getPlayer()->draw();
+}
+
+// HTML LAST
+require 'src/php/HTML.php';

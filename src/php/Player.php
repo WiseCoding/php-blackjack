@@ -9,15 +9,15 @@ class Player
 
   public function __construct($deck, $player)
   {
-    $card1 = $deck->drawCard();
-    $card2 = $deck->drawCard();
-    $cards = [$card1, $card2];
-    saveCardsSession($cards, $player);
+    array_push($this->cards, $deck->drawCard());
+    array_push($this->cards, $deck->drawCard());
+    saveStartCards($this->cards, $player);
   }
 
   public function draw()
   {
-    # code...
+    // array_push($this->cards, $deck->drawCard());
+    // saveDrawnCard($this->cards, $player);
   }
   public function hold()
   {

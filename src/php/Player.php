@@ -7,17 +7,23 @@ class Player
   private $cards = [];
   private $lost = false;
 
-  public function __construct(array $card)
+  public function __construct($deck, $name)
   {
-    // TODO: Draw 2 cards for the player
-    //$this->card = $card;
+    $card1 = $deck->drawCard();
+    $card2 = $deck->drawCard();
+    saveCardSession($card1, $name . '1');
+    saveCardSession($card2, $name . '2');
   }
 
-  public function hit()
+  public function draw()
   {
     # code...
   }
-  public function surrender()
+  public function hold()
+  {
+    # code...
+  }
+  public function stop()
   {
     # code...
   }
@@ -30,8 +36,3 @@ class Player
     # code...
   }
 }
-
-// The player has to draw to cards.
-// The player has to get two cards from the Deck.
-
-// Then the dealer has to get two cards from the deck.

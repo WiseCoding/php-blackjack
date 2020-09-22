@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 
 // FUNCTIONS
-function whatIsHappening()
+function debug()
 {
   echo '<h2>$_GET</h2>';
   var_dump($_GET);
@@ -14,4 +14,11 @@ function whatIsHappening()
   var_dump($_COOKIE);
   echo '<h2>$_SESSION</h2>';
   var_dump($_SESSION);
+}
+
+function saveCardSession($card, $name)
+{
+  if (!isset($_SESSION[$name])) {
+    $_SESSION[$name] = $card;
+  }
 }

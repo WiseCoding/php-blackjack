@@ -7,12 +7,12 @@ class Player
   private $cards = [];
   private $lost = false;
 
-  public function __construct($deck, $name)
+  public function __construct($deck, $player)
   {
     $card1 = $deck->drawCard();
     $card2 = $deck->drawCard();
-    saveCardSession($card1, $name . '1');
-    saveCardSession($card2, $name . '2');
+    $cards = [$card1, $card2];
+    saveCardsSession($cards, $player);
   }
 
   public function draw()

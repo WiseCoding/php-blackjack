@@ -38,14 +38,16 @@
     <!-- PLAYER -->
     <div class="card">
       <div class="mt-4 text-xl font-bold">PLAYER</div>
-      <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg">
+      <p><?= printCards('player') ?></p>
+      <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
 
     </div>
 
     <!-- DEALER -->
     <div class="card">
       <div class="mt-4 text-xl font-bold">DEALER</div>
-      <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg">
+      <p><?= printCards('dealer') ?></p>
+      <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
     </div>
 
   </form>

@@ -19,11 +19,25 @@ debug();
 
 
 // INSTANTIATION
-$blackjack = new Blackjack();
-
-if (isset($_POST['draw'])) {
-  $blackjack->getPlayer()->draw();
+if (!isset($_SESSION['blackjack'])) {
+  $blackjack = new Blackjack();
+  $_SESSION['blackjack'] = serialize($blackjack);
+} else {
+  $blackjack = unserialize($_SESSION['blackjack']);
 }
+
+// PLAYER DRAWS CARD
+if (isset($_POST['draw'])) {
+  $blackjack->getPlayer()->draw($blackjack->getDeck());
+  $_SESSION['blackjack'] = serialize($blackjack);
+}
+
+$player_cards_value = $blackjack->getPlayer()->getCards();
+$player_total_value = 0;
+foreach ($player_cards_value as $value) {
+  $player_total_value += $value->getValue();
+}
+echo $player_total_value;
 
 // HTML LAST
 require 'src/php/HTML.php';

@@ -21056,10 +21056,7 @@ video {
 }
 
 .card {
-  max-width: 24rem;
   margin: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
   overflow: hidden;
   text-align: center;
   --bg-opacity: 1;

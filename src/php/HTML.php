@@ -12,10 +12,10 @@
   <link rel="stylesheet" type="text/css" href="./src/css/index.css" />
 </head>
 
-<body class="container box-border bg-gray-100">
+<body class="box-border bg-gray-100">
 
   <!-- FORM   -->
-  <form action="" method="POST">
+  <form class="container mx-auto" action="" method="POST">
 
     <!-- BUTTONS -->
     <div class="card flex justify-center p-6 mb-6">
@@ -38,7 +38,7 @@
     <!-- PLAYER -->
     <div class="card">
       <div class="mt-4 text-xl font-bold">PLAYER</div>
-      <p><?= printCards('player') ?></p>
+      <div class="transform -translate-y-8"><?= $blackjack->getPlayer()->showCards() ?></div>
       <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
 
     </div>
@@ -46,7 +46,7 @@
     <!-- DEALER -->
     <div class="card">
       <div class="mt-4 text-xl font-bold">DEALER</div>
-      <p><?= printCards('dealer') ?></p>
+      <div class="transform -translate-y-8"><?= $blackjack->getDealer()->showCards() ?></div>
       <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
     </div>
 

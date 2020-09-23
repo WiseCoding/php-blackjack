@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class Player
 {
-  private $cards = [];
+  protected $cards = [];
   private $lost = false;
 
 
@@ -31,13 +31,13 @@ class Player
 
   public function draw(Deck $deck): void
   {
-    // draw a new card from the deck
-    $drawnCard = $deck->drawCard();
-    array_push($this->cards, $drawnCard);
-
     // if total > 21 player loses
     if ($this->calcScore() > 21) {
       $this->lost = true;
+    } else {
+      // draw a new card from the deck
+      $drawnCard = $deck->drawCard();
+      array_push($this->cards, $drawnCard);
     }
   }
 
@@ -51,18 +51,32 @@ class Player
     return $total;
   }
 
-  public function hold()
-  {
-    # code...
-  }
-
-  public function stop()
+  public function stop(): void
   {
     $this->lost = true;
   }
 
-  public function hasLost()
+  public function hasLost(): bool
   {
-    # code...
+    return $this->lost;
+  }
+}
+
+class Dealer extends Player
+{
+  public function __construct(Deck $deck)
+  {
+    array_push($this->cards, $deck->drawCard());
+    array_push($this->cards, $deck->drawCard());
+  }
+
+  public function draw(Deck $deck): void
+  {
+    // dealer stops drawing cards if total > 15
+    if ($this->calcScore() <= 15) {
+      $drawnCard = $deck->drawCard();
+      array_push($this->cards, $drawnCard);
+      parent::draw($deck);
+    }
   }
 }

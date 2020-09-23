@@ -17,8 +17,13 @@
   <!-- FORM   -->
   <form class="container mx-auto" action="" method="POST">
 
-    <!-- BUTTONS -->
+    <!-- STATUS -->
+    <div class="card">
+      <p class="block text-center"><?= $status; ?></p>
+    </div>
+
     <div class="card flex justify-center p-6 mb-6">
+      <!-- BUTTONS -->
       <button class="btn" value="draw" name="draw">
         <img class="w-8 h-8 mr-2" src="./src/img/draw.svg">
         <span>Draw</span>
@@ -37,17 +42,14 @@
 
     <!-- PLAYER -->
     <div class="card">
-      <div class="mt-4 text-xl font-bold">PLAYER</div>
-      <div class="transform -translate-y-8"><?= $blackjack->getPlayer()->showCards() ?></div>
-      <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
-
+      <div class="mt-4 text-xl font-bold">PLAYER (<?= $blackjack->getPlayer()->calcScore(); ?>)</div>
+      <div class="transform -translate-y-4"><?= $blackjack->getPlayer()->showCards() ?></div>
     </div>
 
     <!-- DEALER -->
     <div class="card">
-      <div class="mt-4 text-xl font-bold">DEALER</div>
-      <div class="transform -translate-y-8"><?= $blackjack->getDealer()->showCards() ?></div>
-      <!-- <img id="cards" class="w-full" src="src/img/cards/card-2-clubs.svg"> -->
+      <div class="mt-4 text-xl font-bold">DEALER (<?= $blackjack->getDealer()->calcScore(); ?>)</div>
+      <div class="transform -translate-y-4"><?= $blackjack->getDealer()->showCards() ?></div>
     </div>
 
   </form>

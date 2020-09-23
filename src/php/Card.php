@@ -47,7 +47,7 @@ class Card
 
     if ($includeColor) {
       $value = sprintf(
-        '<span style="font-size: 200px; color: %s;">%s</span>',
+        '<span style="font-size: 150px; color: %s;">%s</span>',
         $this->suit->getColor(),
         $value
       );

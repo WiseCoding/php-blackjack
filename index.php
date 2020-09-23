@@ -32,12 +32,12 @@ if (isset($_POST['draw'])) {
   $_SESSION['blackjack'] = serialize($blackjack);
 }
 
-$player_cards_value = $blackjack->getPlayer()->getCards();
-$player_total_value = 0;
-foreach ($player_cards_value as $value) {
-  $player_total_value += $value->getValue();
-}
-echo $player_total_value;
+// PLAYER HOLDS
+
+
+// PLAYER SURRENDERS
+
+
 
 // HTML LAST
 require 'src/php/HTML.php';

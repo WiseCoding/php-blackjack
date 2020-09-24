@@ -85,4 +85,13 @@ class Dealer extends Player
       parent::draw($deck);
     }
   }
+
+  public function showCard($amount)
+  {
+    // echo one card & one unicode card back to hide cards
+    echo $this->cards[0]->getUnicodeCharacter(true);
+    for ($i = 1; $i < $amount; $i++) {
+      echo '<span style="font-size: 150px;">&#127136</span>';
+    }
+  }
 }

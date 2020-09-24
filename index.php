@@ -99,8 +99,6 @@ if ($player_lost === false && $dealer_lost === false) {
 }
 
 
-
-
 // HTML LAST
 require 'src/php/HTML.php';
 //var_dump($blackjack);

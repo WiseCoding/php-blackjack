@@ -54,7 +54,7 @@
     <!-- DEALER -->
     <div class="<?= $dealerDiv ?>">
       <div class="mt-4 text-xl font-bold">DEALER <?= $blackjack->getDealer()->calcScore() ?></div>
-      <div class="transform -translate-y-6"><?= $blackjack->getDealer()->showCards(); ?></div>
+      <div class="transform -translate-y-6"><?= ($blackjack->getState() === 'game_on') ? $blackjack->getDealer()->showCard(count($blackjack->getDealer()->getCards())) : $blackjack->getPlayer()->showCards(); ?></div>
     </div>
 
   </form>

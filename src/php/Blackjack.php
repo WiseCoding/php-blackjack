@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class Blackjack
 {
-  private $player, $dealer, $deck, $state;
+  private $player, $dealer, $deck, $state = 'game_on';
 
   // CONSTRUCTOR
   public function __construct()
@@ -28,6 +28,17 @@ class Blackjack
   {
     return $this->deck;
   }
+  public function getState()
+  {
+    return $this->state;
+  }
+
+  // SETTERS
+  public function setState($state)
+  {
+    $this->state = $state;
+    return $this->state;
+  }
 
   // METHODS
   public function evalGame()
@@ -35,14 +46,34 @@ class Blackjack
     $playerScore = $this->player->calcScore();
     $dealerScore = $this->dealer->calcScore();
 
-    if ($playerScore === $dealerScore) {
+    if ($playerScore === $dealerScore && $playerScore <= 21) {
       $this->player->stop();
       $this->dealer->stop();
-    } else if ($playerScore > $dealerScore) {
+      //echo "ONE";
+    } else if ($playerScore > $dealerScore && $playerScore <= 21) {
       $this->dealer->stop();
-    } else {
+      //echo "TWO";
+    } else if ($playerScore < $dealerScore && $dealerScore <= 21) {
       $this->player->stop();
+      //echo "THREE";
+    } else if ($playerScore <= 21) {
+      $this->dealer->stop();
+      //echo "FOUR";
+    } else if ($dealerScore <= 21) {
+      $this->player->stop();
+      //echo "FIVE";
+    } else if ($dealerScore > 21) {
+      $this->dealer->stop();
+      //echo "SIX";
+    } else if ($playerScore > 21) {
+      $this->player->stop();
+      //echo "SEVEN";
+    } else if ($playerScore > 21 && $dealerScore > 21) {
+      $this->player->stop();
+      $this->dealer->stop();
+      //echo "EIGHT";
     }
+    $this->state = 'game_over';
   }
 
   public function blackJack()
@@ -53,10 +84,13 @@ class Blackjack
     if ($playerScore === 21 && $dealerScore === 21) {
       $this->player->stop();
       $this->dealer->stop();
+      $this->state = 'game_over';
     } else if ($playerScore === 21) {
       $this->dealer->stop();
+      $this->state = 'game_over';
     } else if (($dealerScore === 21)) {
       $this->player->stop();
+      $this->state = 'game_over';
     }
   }
 }

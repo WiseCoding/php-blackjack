@@ -5,12 +5,12 @@
 @import 'tailwindcss/utilities';
 
 .btn {
-  @apply inline-flex items-center px-2 py-2 m-1 text-lg font-bold text-gray-800 bg-orange-300 border-2 border-gray-600 border-solid rounded-lg;
+  @apply inline-flex items-center px-2 py-1 m-1 text-lg text-gray-800 bg-orange-300 border border-gray-600 border-solid rounded-lg;
 }
 .btn:hover {
-  @apply bg-blue-400;
+  @apply text-white bg-blue-400;
 }
 
 .card {
-  @apply m-8 overflow-hidden text-center bg-white rounded-lg shadow-lg;
+  @apply m-8 overflow-hidden text-center rounded-lg shadow-lg;
 }

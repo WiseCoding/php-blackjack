@@ -29,15 +29,20 @@ class Player
     }
   }
 
-  public function draw(Deck $deck): void
+  public function draw(Deck $deck)
   {
     // if total > 21 player loses
     if ($this->calcScore() > 21) {
       $this->lost = true;
+      return 'Bust!';
     } else {
-      // draw a new card from the deck
       $drawnCard = $deck->drawCard();
       array_push($this->cards, $drawnCard);
+      if ($this->calcScore() > 21) {
+        $this->lost = true;
+        return 'Bust!';
+      }
+      return 'Drawn Card';
     }
   }
 
@@ -49,6 +54,13 @@ class Player
       $total += $card->getValue();
     }
     return $total;
+  }
+
+  public function hold(): void
+  {
+    if ($this->lost === true) {
+      # code...
+    }
   }
 
   public function stop(): void
@@ -70,13 +82,12 @@ class Dealer extends Player
     array_push($this->cards, $deck->drawCard());
   }
 
-  public function draw(Deck $deck): void
+  public function draw(Deck $deck)
   {
     // dealer stops drawing cards if total > 15
     if ($this->calcScore() <= 15) {
-      $drawnCard = $deck->drawCard();
-      array_push($this->cards, $drawnCard);
       parent::draw($deck);
+      return "Hold";
     }
   }
 }

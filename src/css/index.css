@@ -21030,18 +21030,17 @@ video {
   align-items: center;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   margin: 0.25rem;
   font-size: 1.125rem;
-  font-weight: 700;
   --text-opacity: 1;
   color: #2d3748;
   color: rgba(45, 55, 72, var(--text-opacity));
   --bg-opacity: 1;
   background-color: #fbd38d;
   background-color: rgba(251, 211, 141, var(--bg-opacity));
-  border-width: 2px;
+  border-width: 1px;
   --border-opacity: 1;
   border-color: #718096;
   border-color: rgba(113, 128, 150, var(--border-opacity));
@@ -21050,6 +21049,9 @@ video {
 }
 
 .btn:hover {
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   --bg-opacity: 1;
   background-color: #63b3ed;
   background-color: rgba(99, 179, 237, var(--bg-opacity));
@@ -21059,9 +21061,6 @@ video {
   margin: 2rem;
   overflow: hidden;
   text-align: center;
-  --bg-opacity: 1;
-  background-color: #fff;
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 // START SESSION
 session_start();
-//session_unset();
 
 // REQUIRES
 require 'src/php/Suit.php';
@@ -18,74 +17,88 @@ require 'src/php/Script.php';
 $playerStatus = '';
 $dealerStatus = '';
 
+// START, RESTART GAME
 if (isset($_POST['play'])) {
   // RESET
   unset($blackjack);
-  session_unset();
+  session_destroy();
 }
 
-// INSTANTIATION
+// INSTANTIATE NEW-ONGOING GAME
 if (!isset($_SESSION['blackjack'])) {
   $blackjack = new Blackjack();
+  // save session
   $_SESSION['blackjack'] = serialize($blackjack);
 } else {
   $blackjack = unserialize($_SESSION['blackjack']);
 }
 
-// PLAYER DRAWS CARD
+// PLAYER HITS
 if (isset($_POST['draw'])) {
-  $playerStatus = $blackjack->getPlayer()->draw($blackjack->getDeck());
-  $dealerStatus = $blackjack->getDealer()->draw($blackjack->getDeck());
-
+  $blackjack->getPlayer()->draw($blackjack->getDeck());
+  $blackjack->getDealer()->draw($blackjack->getDeck());
+  // save session
   $_SESSION['blackjack'] = serialize($blackjack);
 }
 
-// PLAYER HOLDS
+// PLAYER STANDS
 if (isset($_POST['hold'])) {
-  $playerStatus = 'Hold';
-  $dealerStatus = $blackjack->getDealer()->draw($blackjack->getDeck());
-  $playerScore = $blackjack->getPlayer()->calcScore();
-  $dealerScore = $blackjack->getDealer()->calcScore();
-  if ($playerScore > $dealerScore) {
-    $blackjack->getDealer()->stop();
-  } else if ($playerScore === $dealerScore) {
-    $blackjack->getPlayer()->stop();
-    $blackjack->getDealer()->stop();
-  } else {
-    $blackjack->getPlayer()->stop();
-  }
-
+  $blackjack->getDealer()->draw($blackjack->getDeck());
+  $blackjack->getDealer()->draw($blackjack->getDeck());
+  $blackjack->getDealer()->draw($blackjack->getDeck());
+  $blackjack->evalGame();
+  // save session
   $_SESSION['blackjack'] = serialize($blackjack);
 }
 
 // PLAYER SURRENDERS
 if (isset($_POST['stop'])) {
+  // player lost = true
   $blackjack->getPlayer()->stop();
-  $playerStatus = 'Surrendered 🏳';
-  $dealerStatus = 'Win';
+  // save session
+  $_SESSION['blackjack'] = serialize($blackjack);
 }
 
-// STATUS
-if ($blackjack->getPlayer()->hasLost() && $blackjack->getDealer()->hasLost()) {
-  $status = 'Draw...';
-  $playerDiv = "card bg-orange-300";
-  $dealerDiv = "card bg-orange-300";
+// CHECK FOR BLACKJACK
+$blackjack->blackJack();
+
+// PRINT STATUS MESSAGE
+$player_lost = $blackjack->getPlayer()->hasLost();
+$dealer_lost = $blackjack->getDealer()->hasLost();
+
+if ($player_lost && $dealer_lost) {
+  $status = 'It\'s a <b>draw</b>. Try again!';
+  $playerDiv = "card bg-orange-200";
+  $dealerDiv = "card bg-orange-200";
 }
-if ($blackjack->getPlayer()->hasLost() && $blackjack->getDealer()->hasLost() === false) {
-  $status = 'Player Lost, try again!';
-  $playerDiv = "card bg-red-300";
-  $dealerDiv = "card bg-green-300";
+if ($player_lost && $dealer_lost === false) {
+  $status = 'Player <b>Lost</b>, better luck next game!';
+  $playerDiv = "card bg-red-200";
+  $dealerDiv = "card bg-green-200";
 }
-if ($blackjack->getPlayer()->hasLost() === false && $blackjack->getDealer()->hasLost()) {
-  $status = 'Player Wins!';
-  $playerDiv = "card bg-green-300";
-  $dealerDiv = "card bg-red-300";
+if ($player_lost === false && $dealer_lost) {
+  $status = 'Player <b>Wins</b>, awesome!';
+  $playerDiv = "card bg-green-200";
+  $dealerDiv = "card bg-red-200";
 }
-if ($blackjack->getPlayer()->hasLost() === false && $blackjack->getDealer()->hasLost() === false) {
+if ($player_lost === false && $dealer_lost === false) {
   $status = 'Game in progress...';
   $playerDiv = "card bg-white";
   $dealerDiv = "card bg-white";
 }
+
+
+
+// HTML LAST
+require 'src/php/HTML.php';
+//var_dump($blackjack);
+
+//debug();
+
+
+
+
+
 
 /* // REFRESH PREVENT
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -94,8 +107,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   header("Location: " . $_SERVER['PHP_SELF']);
   exit;
 } */
-
-// HTML LAST
-require 'src/php/HTML.php';
-
-//debug();

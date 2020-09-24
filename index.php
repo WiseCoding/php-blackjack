@@ -74,25 +74,25 @@ $player_lost = $blackjack->getPlayer()->hasLost();
 $dealer_lost = $blackjack->getDealer()->hasLost();
 
 if ($player_lost && $dealer_lost) {
-  $status = 'It\'s a <b>draw</b>. Try again!';
+  $status = 'It\'s a <b>draw</b>!';
   $playerDiv = "card bg-orange-200";
   $dealerDiv = "card bg-orange-200";
   $blackjack->setState('game_over');
 }
 if ($player_lost && $dealer_lost === false) {
-  $status = 'Player <b>Lost</b>, better luck next game!';
+  $status = 'You <b>Lose</b>!';
   $playerDiv = "card bg-red-200";
   $dealerDiv = "card bg-green-200";
   $blackjack->setState('game_over');
 }
 if ($player_lost === false && $dealer_lost) {
-  $status = 'Player <b>Wins</b>, awesome!';
+  $status = 'You <b>Win</b>!';
   $playerDiv = "card bg-green-200";
   $dealerDiv = "card bg-red-200";
   $blackjack->setState('game_over');
 }
 if ($player_lost === false && $dealer_lost === false) {
-  $status = 'Game in progress...';
+  $status = '<i>Game in progress...</i>';
   $playerDiv = "card bg-white";
   $dealerDiv = "card bg-white";
   $blackjack->setState('game_on');

@@ -73,7 +73,7 @@ class Blackjack
       $this->dealer->stop();
       //echo "EIGHT";
     }
-    $this->state = 'game_over';
+    $this->setState('game_over');
   }
 
   public function blackJack()
@@ -84,13 +84,13 @@ class Blackjack
     if ($playerScore === 21 && $dealerScore === 21) {
       $this->player->stop();
       $this->dealer->stop();
-      $this->state = 'game_over';
+      $this->setState('game_over');
     } else if ($playerScore === 21) {
       $this->dealer->stop();
-      $this->state = 'game_over';
-    } else if (($dealerScore === 21)) {
+      $this->setState('game_over');
+    } else if ($dealerScore === 21) {
       $this->player->stop();
-      $this->state = 'game_over';
+      $this->setState('game_over');
     }
   }
 }

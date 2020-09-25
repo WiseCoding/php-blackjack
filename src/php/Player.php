@@ -53,12 +53,6 @@ class Player
     return $total;
   }
 
-  public function hold(): void
-  {
-    if ($this->lost === true) {
-    }
-  }
-
   public function stop(): void
   {
     $this->lost = true;
@@ -91,7 +85,7 @@ class Dealer extends Player
     // echo one card & one unicode card back to hide cards
     echo $this->cards[0]->getUnicodeCharacter(true);
     for ($i = 1; $i < $amount; $i++) {
-      echo '<span style="font-size: 150px;">&#127136</span>';
+      echo '<span class="sm:text-9xl md:text-10xl text-8xl">&#127136</span>';
     }
   }
 }

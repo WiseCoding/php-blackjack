@@ -14,3 +14,39 @@
 .card {
   @apply m-8 overflow-hidden text-center rounded-lg shadow-lg;
 }
+
+body {
+  background: linear-gradient(
+    -45deg,
+    #ffffff3a,
+    #cccccce8,
+    #1b80a5da,
+    #000000d5
+  );
+  background-size: 400% 400%;
+  -webkit-animation: gradientBG 10s ease infinite;
+  animation: gradientBG 10s ease infinite;
+}
+
+@-webkit-keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

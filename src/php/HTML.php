@@ -12,10 +12,10 @@
   <link rel="stylesheet" type="text/css" href="./src/css/index.css" />
 </head>
 
-<body class="box-border bg-gray-100">
+<body class="container box-border mx-auto bg-gray-100">
 
   <!-- FORM   -->
-  <form class="container mx-auto" action="" method="POST">
+  <form action="" method="POST">
 
     <!-- STATUS -->
     <div class="p-4 mt-6 text-xl text-center text-gray-800 rounded-full"><?= $status ?></div>

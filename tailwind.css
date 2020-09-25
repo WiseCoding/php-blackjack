@@ -5,40 +5,29 @@
 @import 'tailwindcss/utilities';
 
 .btn {
-  @apply inline-flex items-center px-2 py-1 m-1 text-lg text-gray-800 bg-orange-300 border border-gray-600 border-solid rounded-lg;
+  @apply inline-flex items-center px-2 py-1 m-1 text-lg text-gray-800 bg-orange-300 border border-l-4 border-gray-800 border-solid rounded-lg shadow-lg;
 }
 .btn:hover {
-  @apply text-white bg-blue-400;
+  @apply animate-pulse text-white bg-blue-400 border-l border-r-4 shadow-xl;
 }
 
 .card {
-  @apply m-8 overflow-hidden text-center rounded-lg shadow-lg;
+  @apply mx-auto my-8 overflow-hidden text-center rounded-lg shadow-lg;
 }
 
 body {
   background: linear-gradient(
     -45deg,
-    #ffffff3a,
-    #cccccce8,
-    #1b80a5da,
-    #000000d5
+    #dddddd,
+    #a7a7a788,
+    #dddddd,
+    #a7a7a788,
+    #dddddd
   );
   background-size: 400% 400%;
-  -webkit-animation: gradientBG 10s ease infinite;
   animation: gradientBG 10s ease infinite;
 }
 
-@-webkit-keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
@@ -50,3 +39,18 @@ body {
     background-position: 0% 50%;
   }
 }
+
+/* background: linear-gradient(
+    -45deg,
+    #000000a8,
+    #072c64b0,
+    #8d0f16c7,
+    #0fbe58ce
+  ); */
+/* background: linear-gradient(
+    -45deg,
+    #000000ce,
+    #092349d2,
+    #0c234ec7,
+    #000000ce
+  ); */

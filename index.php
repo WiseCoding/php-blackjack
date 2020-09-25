@@ -12,7 +12,6 @@ require 'src/php/Card.php';
 require 'src/php/Deck.php';
 require 'src/php/Player.php';
 require 'src/php/Blackjack.php';
-require 'src/php/Script.php';
 
 // GLOBALS
 $playerStatus = '';
@@ -38,8 +37,6 @@ if (!isset($_SESSION['blackjack'])) {
 // CHECK FOR GAME STATE
 $state = $blackjack->getState();
 
-// CHECK FOR BLACKJACK
-$blackjack->blackJack();
 
 if ($blackjack->getState() === 'game_on') {
 
@@ -56,6 +53,7 @@ if ($blackjack->getState() === 'game_on') {
     $blackjack->getDealer()->draw($blackjack->getDeck());
     $blackjack->getDealer()->draw($blackjack->getDeck());
     $blackjack->getDealer()->draw($blackjack->getDeck());
+    // evaluate game state
     $blackjack->evalGame();
     // save session
     $_SESSION['blackjack'] = serialize($blackjack);
@@ -64,55 +62,49 @@ if ($blackjack->getState() === 'game_on') {
   // PLAYER SURRENDERS
   if (isset($_POST['stop'])) {
     $blackjack->getPlayer()->stop();
+    // evaluate game state
+    $blackjack->evalGame();
     // save session
     $_SESSION['blackjack'] = serialize($blackjack);
   }
 }
 
+// CHECK FOR BLACKJACK
+$blackjack_message = '';
+$blackjack_message = $blackjack->blackJack();
+
 // PRINT STATUS MESSAGE
 $player_lost = $blackjack->getPlayer()->hasLost();
 $dealer_lost = $blackjack->getDealer()->hasLost();
 
+// DRAW
 if ($player_lost && $dealer_lost) {
   $status = 'It\'s a <b>draw</b>!';
-  $playerDiv = "card bg-orange-200";
-  $dealerDiv = "card bg-orange-200";
+  $playerDiv = "bg-orange-200";
+  $dealerDiv = "bg-orange-200";
   $blackjack->setState('game_over');
 }
+// LOSE
 if ($player_lost && $dealer_lost === false) {
-  $status = 'You <b>Lose</b>!';
-  $playerDiv = "card bg-red-200";
-  $dealerDiv = "card bg-green-200";
+  $status = 'You <b>lose</b>! ' . $blackjack_message;
+  $playerDiv = "bg-red-200 ";
+  $dealerDiv = "bg-green-200 ";
   $blackjack->setState('game_over');
 }
+// WIN
 if ($player_lost === false && $dealer_lost) {
-  $status = 'You <b>Win</b>!';
-  $playerDiv = "card bg-green-200";
-  $dealerDiv = "card bg-red-200";
+  $status = 'You <b>win</b>! ' . $blackjack_message;
+  $playerDiv = "bg-green-200 ";
+  $dealerDiv = "bg-red-200 ";
   $blackjack->setState('game_over');
 }
+// GAME ONGOING...
 if ($player_lost === false && $dealer_lost === false) {
   $status = '<i>Game in progress...</i>';
-  $playerDiv = "card bg-white";
-  $dealerDiv = "card bg-white";
+  $playerDiv = "bg-gray-100";
+  $dealerDiv = "bg-gray-100";
   $blackjack->setState('game_on');
 }
 
-
 // HTML LAST
 require 'src/php/HTML.php';
-//var_dump($blackjack);
-//debug();
-
-
-
-
-
-
-/* // REFRESH PREVENT
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $_SESSION['postdata'] = $_POST;
-  unset($_POST);
-  header("Location: " . $_SERVER['PHP_SELF']);
-  exit;
-} */

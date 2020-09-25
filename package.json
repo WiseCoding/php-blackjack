@@ -8,7 +8,8 @@
     "autoprefixer": "^9.8.6",
     "postcss-cli": "^7.1.2",
     "postcss-import": "^12.0.1",
-    "tailwindcss": "^1.8.10"
+    "tailwindcss": "^1.8.10",
+    "typeface-itim": "0.0.72"
   },
   "devDependencies": {
     "@prettier/plugin-php": "^0.14.3",

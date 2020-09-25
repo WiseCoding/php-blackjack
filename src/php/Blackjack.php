@@ -49,29 +49,21 @@ class Blackjack
     if ($playerScore === $dealerScore && $playerScore <= 21) {
       $this->player->stop();
       $this->dealer->stop();
-      //echo "ONE";
     } else if ($playerScore > $dealerScore && $playerScore <= 21) {
       $this->dealer->stop();
-      //echo "TWO";
     } else if ($playerScore < $dealerScore && $dealerScore <= 21) {
       $this->player->stop();
-      //echo "THREE";
     } else if ($playerScore <= 21) {
       $this->dealer->stop();
-      //echo "FOUR";
     } else if ($dealerScore <= 21) {
       $this->player->stop();
-      //echo "FIVE";
     } else if ($dealerScore > 21) {
       $this->dealer->stop();
-      //echo "SIX";
     } else if ($playerScore > 21) {
       $this->player->stop();
-      //echo "SEVEN";
     } else if ($playerScore > 21 && $dealerScore > 21) {
       $this->player->stop();
       $this->dealer->stop();
-      //echo "EIGHT";
     }
     $this->setState('game_over');
   }
@@ -88,9 +80,11 @@ class Blackjack
     } else if ($playerScore === 21) {
       $this->dealer->stop();
       $this->setState('game_over');
+      return "You got <b>blackjack!</b>";
     } else if ($dealerScore === 21) {
       $this->player->stop();
       $this->setState('game_over');
+      return "Dealer got <b>blackjack!</b>";
     }
   }
 }

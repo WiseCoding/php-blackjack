@@ -27,17 +27,17 @@
         <span>Play</span>
       </button>
 
-      <button class="btn" value="draw" name="draw">
+      <button class="btn" value="draw" name="draw" <?= $disabled ?>>
         <img class="sm:inline hidden w-8 h-8 mr-1" src="./src/img/draw.svg">
         <span>Draw</span>
       </button>
 
-      <button class="btn" value="hold" name="hold">
+      <button class="btn" value="hold" name="hold" <?= $disabled ?>>
         <img class="sm:inline hidden w-8 h-8 mr-1" src="./src/img/stand.svg">
         <span>Hold</span>
       </button>
 
-      <button class="btn" value="stop" name="stop">
+      <button class="btn" value="stop" name="stop" <?= $disabled ?>>
         <img class="sm:inline hidden w-8 h-8 mr-1" src="./src/img/stop.svg">
         <span>Stop</span>
       </button>

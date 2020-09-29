@@ -16,6 +16,7 @@ require 'src/php/Blackjack.php';
 // GLOBALS
 $playerStatus = '';
 $dealerStatus = '';
+$disabled = 'disabled';
 
 // START, RESTART GAME
 if (isset($_POST['play'])) {
@@ -39,6 +40,8 @@ $state = $blackjack->getState();
 
 
 if ($blackjack->getState() === 'game_on') {
+  // ENABLE BUTTONS
+  $disabled = '';
 
   // PLAYER HITS
   if (isset($_POST['draw'])) {
@@ -67,6 +70,9 @@ if ($blackjack->getState() === 'game_on') {
     // save session
     $_SESSION['blackjack'] = serialize($blackjack);
   }
+} else {
+  // DISABLE BUTTONS
+  $disabled = 'disabled';
 }
 
 // CHECK FOR BLACKJACK
